@@ -86,10 +86,14 @@
             background: linear-gradient(180deg, #e6f0fa, #ffffff);
             padding: 20px 15px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .banner .content {
             max-width: 100%;
+            margin-bottom: 15px;
         }
 
         .banner h1 {
@@ -117,14 +121,13 @@
         .banner img {
             width: 100%;
             max-width: 300px;
-            margin-top: 15px;
             border-radius: 10px;
         }
 
         /* Categories */
         .categories {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 15px;
             padding: 15px;
         }
@@ -489,13 +492,14 @@
 
             .banner {
                 padding: 40px 20px;
-                display: flex;
+                flex-direction: row;
                 justify-content: space-between;
                 text-align: left;
             }
 
             .banner .content {
                 max-width: 50%;
+                margin-bottom: 0;
             }
 
             .banner h1 {
@@ -513,17 +517,15 @@
 
             .banner img {
                 max-width: 40%;
-                margin-top: 0;
             }
 
             .categories {
-                flex-direction: row;
+                grid-template-columns: repeat(3, 1fr);
                 padding: 20px;
-                justify-content: center;
             }
 
             .category-card {
-                width: 30%;
+                width: 100%;
             }
 
             .category-card img {
@@ -584,7 +586,6 @@
                 const loanType = document.querySelector('#loan-calculator select').value;
                 let rate;
 
-                // Kiểm tra dữ liệu đầu vào
                 if (isNaN(amount) || amount <= 0) {
                     alert('Vui lòng nhập số tiền vay hợp lệ!');
                     return;
@@ -598,7 +599,6 @@
                     return;
                 }
 
-                // Gán lãi suất theo loại vay
                 if (loanType === "Vay mua xe") rate = 6.5;
                 else if (loanType === "Vay mua nhà") rate = 7.0;
                 else if (loanType === "Vay tín chấp") rate = 8.0;
@@ -650,7 +650,6 @@
                     document.querySelector('#confirm-modal').style.display = 'none';
                     document.querySelector('.contract-display').classList.add('active');
 
-                    // Auto-fill contract
                     const customerName = document.querySelector('#register-form input[placeholder="Họ và tên"]').value;
                     const customerId = document.querySelector('#register-form input[placeholder="CCCD/CMND"]').value;
                     const loanAmount = document.querySelector('#register-form input[placeholder="Số tiền vay (VNĐ)"]').value;
@@ -672,12 +671,9 @@
                         <p><strong>Đại diện Shinhan Bank:</strong> [Chữ ký và con dấu]</p>
                     `;
 
-                    // Notifications
                     alert('Email gửi đến ThuyTrangEly318@gmail.com: "Đăng ký vay thành công. Vui lòng kiểm tra hợp đồng trong hệ thống."');
                     alert('SMS: "Shinhan Bank: Đăng ký vay thành công. Kiểm tra hợp đồng tại website."');
-
-                    // Messenger Notification
-                    const balance = loanAmount; // Giả lập số dư = số tiền vay
+                    const balance = loanAmount;
                     alert(`Messenger: "Shinhan Bank: Hồ sơ vay của bạn đã được duyệt. Số dư tài khoản: ${balance} VNĐ. Liên hệ hỗ trợ: https://m.me/shinhanbankvietnam"`);
                     window.open('https://m.me/shinhanbankvietnam', '_blank');
                 }, 2000);
@@ -737,12 +733,6 @@
             <button onclick="document.querySelector('#register-form .section-toggle').click()">TÌM HIỂU THÊM</button>
         </div>
         <img src="https://imgur.com/FlO8y6b.jpg" alt="Banner Image" loading="lazy">
-         </div>
-            <h1>Vay cho nhân viên ngân hàng</h1>
-            <p>vì chúng tôi hiểu nhân viên ngân hàng cũng muốn vay, đặc biệt hỗ trợ khách hàng có nợ xấu!</p>
-            <button onclick="document.querySelector('#register-form .section-toggle').click()">TÌM HIỂU THÊM</button>
-        </div>
-        <img src="https://https://imgur.com/FlO8y6b.jpg" alt="Banner Image" loading="lazy">
     </section>
 
     <!-- Categories -->
@@ -760,53 +750,18 @@
             <img src="https://imgur.com/SPU07Wb.jpg" alt="Doanh Nghiệp" loading="lazy">
             <h4>DOANH NGHIỆP</h4>
             <div class="sub-items">
-                <a href="#"></h3>Vay Vốn Kinh Doanh</h3>
-                             <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-card">
-                <img src="https://imgur.com/Rkdeucp.jpg" alt="Vay Vốn Kinh Doanh" loading="lazy">
-                <div>
-                <a href="#"></h3>Tài Khoản Doanh Nghiệp</h3>
-                             <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-card">
-                <img src="https://imgur.com/xnhyZeU.jpg" alt="Tài Khoản Doanh Nghiệp" loading="lazy">
-                <div>
-                <a href="#"></h3>Dịch Vụ Tài Chính</h3>
-                             <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-card">
-                <img src="https://imgur.com/qTsq2QZ.jpg" alt="Dịch Vụ Tài Chính" loading="lazy">
-                <div>
+                <a href="#business-loans">Vay Vốn Kinh Doanh</a>
+                <a href="#business-accounts">Tài Khoản Doanh Nghiệp</a>
+                <a href="#financial-services">Dịch Vụ Tài Blanco</a>
+            </div>
         </div>
         <div class="category-card">
             <img src="https://imgur.com/bxo0mSQ.jpg" alt="Thẻ" loading="lazy">
             <h4>THẺ</h4>
             <div class="sub-items">
-                </h3>Thẻ Tín Dụng</h3>
-                <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-Debit card">
-                <img src="https://imgur.com/SMokoD2.jpg" alt="Thẻ Tín Dụng" loading="lazy">
-                <div>
-                </h3>Thẻ Ghi Nợ</h3>
-                    <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-card">
-                <img src="https://imgur.com/AI5WktO.jpg" alt="Thẻ Ghi Nợ" loading="lazy">
-                <div>
-                </h3>Ưu Đãi Thẻ</h3>
-                    <span class="arrow">▼</span>
-        </div>
-        <div class="section-content">
-            <div class="loan-card">
-                <img src="https://imgur.com/3pIBWhp.jpg" alt="Ưu Đãi Thẻ" loading="lazy">
-                <div>
+                <a href="#credit-cards">Thẻ Tín Dụng</a>
+                <a href="#debit-cards">Thẻ Ghi Nợ</a>
+                <a href="#card-offers">Ưu Đãi Thẻ</a>
             </div>
         </div>
     </section>
@@ -815,7 +770,11 @@
     <section class="main-sections">
         <!-- Loan Packages -->
         <div class="section-toggle" id="loan-packages">
-             <div clashouse">
+            <h3>Khoản Vay</h3>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="section-content">
+            <div class="loan-card">
                 <img src="https://imgur.com/bwqMgyR.jpg" alt="Vay Mua Nhà" loading="lazy">
                 <div>
                     <h4>Vay Mua Nhà</h4>
@@ -826,7 +785,7 @@
                     <p>Lãi suất: 7%/năm<br>Hạn mức: 2 tỷ<br>Thời hạn: 30 năm<br>Điều kiện: Có tài sản đảm bảo, thu nhập ổn định</p>
                 </div>
             </div>
-            <div class="loan-unsecured">
+            <div class="loan-card">
                 <img src="https://imgur.com/F5HdkRE.jpg" alt="Vay Tín Chấp" loading="lazy">
                 <div>
                     <h4>Vay Tín Chấp</h4>
@@ -837,7 +796,7 @@
                     <p>Lãi suất: 8%/năm<br>Hạn mức: 300 triệu<br>Thời hạn: 60 tháng<br>Điều kiện: Thu nhập từ 4 triệu/tháng, không nợ xấu</p>
                 </div>
             </div>
-            <div class="loan-repair">
+            <div class="loan-card">
                 <img src="https://imgur.com/Rkdeucp.jpg" alt="Vay Sửa Nhà" loading="lazy">
                 <div>
                     <h4>Vay Sửa Nhà</h4>
